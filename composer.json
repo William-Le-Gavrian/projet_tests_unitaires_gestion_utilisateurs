@@ -1,0 +1,17 @@
+{
+    "name": "williamlg/projet_tests_unitaires_gestion_utilisateurs",
+    "require": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "William Le Gavrian",
+            "email": "williamlg@free.fr"
+        }
+    ]
+}
