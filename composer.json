@@ -8,6 +8,9 @@
             "App\\": "src/"
         }
     },
+    "scripts": {
+        "serve": "php -S localhost:8000"
+    },
     "authors": [
         {
             "name": "William Le Gavrian",
