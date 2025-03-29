@@ -1,4 +1,9 @@
 <?php
+
+namespace App\Entity;
+
+use PDO;
+
 class UserManager {
     private PDO $db;
 
@@ -19,6 +24,7 @@ class UserManager {
 
         $stmt = $this->db->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
         $stmt->execute(['name' => $name, 'email' => $email]);
+
     }
 
     public function removeUser(int $id): void {

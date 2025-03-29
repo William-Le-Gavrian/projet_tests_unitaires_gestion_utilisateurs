@@ -1,7 +1,8 @@
 {
     "name": "williamlg/projet_tests_unitaires_gestion_utilisateurs",
     "require": {
-        "phpunit/phpunit": "^11.5"
+        "phpunit/phpunit": "^11.5",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {

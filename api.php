@@ -1,5 +1,7 @@
 <?php
-require_once 'src/UserManager.php';
+
+use App\Entity\UserManager;
+
 header("Content-Type: application/json");
 
 $method = $_SERVER['REQUEST_METHOD'];
