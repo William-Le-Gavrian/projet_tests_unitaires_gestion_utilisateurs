@@ -17,5 +17,8 @@
             "name": "William Le Gavrian",
             "email": "williamlg@free.fr"
         }
-    ]
+    ],
+    "config": {
+        "process-timeout": 3000
+    }
 }

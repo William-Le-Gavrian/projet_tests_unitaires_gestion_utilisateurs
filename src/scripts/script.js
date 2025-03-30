@@ -10,9 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 userList.innerHTML = "";
                 users.forEach(user => {
                     const li = document.createElement("li");
-                    li.innerHTML = `${user.name} (${user.email})
+                    const p = document.createElement("p");
+                    const div = document.createElement("div");
+                    p.innerHTML = `${user.name} (${user.email})`;
+                    div.innerHTML = `
                         <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')">✏️</button>
                         <button onclick="deleteUser(${user.id})">❌</button>`;
+                    li.appendChild(p);
+                    li.appendChild(div);
                     userList.appendChild(li);
                 });
             });
