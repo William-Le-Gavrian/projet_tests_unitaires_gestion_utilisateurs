@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Exception;
+use InvalidArgumentException;
 use PDO;
 
 class UserManager {
@@ -28,6 +30,13 @@ class UserManager {
     }
 
     public function removeUser(int $id): void {
+
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+
+        $user = $stmt->fetch();
+        if(!$user) throw new Exception("Utilisateur introuvable.");
+
         $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
     }
@@ -46,8 +55,15 @@ class UserManager {
     }
 
     public function updateUser(int $id, string $name, string $email): void {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+
+        $user = $stmt->fetch();
+        if(!$user) throw new Exception("Utilisateur introuvable.");
+
         $stmt = $this->db->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
         $stmt->execute(['id' => $id, 'name' => $name, 'email' => $email]);
+
     }
 }
 ?>
