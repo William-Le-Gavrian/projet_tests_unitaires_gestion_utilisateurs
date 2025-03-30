@@ -5,17 +5,6 @@ use App\Entity\UserManager;
 class UserManagerTests extends \PHPUnit\Framework\TestCase
 {
 
-//    protected function setUp(): void
-//    {
-//        $this->db = new PDO("mysql:host=localhost;dbname=tests_unitaires_efrei;charset=utf8", "root", "", [
-//            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-//            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-//        ]);
-//
-//        $this->db->exec("TRUNCATE TABLE users");
-//        $userManager = new UserManager();
-//    }
-
     public function testAddUser()
     {
         $userManager = new UserManager();
