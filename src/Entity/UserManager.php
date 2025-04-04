@@ -19,13 +19,15 @@ class UserManager {
         ]);
     }
 
-    public function addUser(string $name, string $email): void {
+    public function addUser(string $name, string $email, string|int $age): void {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException("Email invalide.");
         }
 
-        $stmt = $this->db->prepare("INSERT INTO users (name, email) VALUES (:name, :email)");
-        $stmt->execute(['name' => $name, 'email' => $email]);
+        if('' === $age) $age = 30;
+
+        $stmt = $this->db->prepare("INSERT INTO users (name, email, age) VALUES (:name, :email, :age)");
+        $stmt->execute(['name' => $name, 'email' => $email, 'age' => $age]);
 
     }
 
@@ -54,15 +56,17 @@ class UserManager {
         return $user;
     }
 
-    public function updateUser(int $id, string $name, string $email): void {
+    public function updateUser(int $id, string $name, string $email, string|int $age): void {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->execute(['id' => $id]);
 
         $user = $stmt->fetch();
         if(!$user) throw new Exception("Utilisateur introuvable.");
 
-        $stmt = $this->db->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
-        $stmt->execute(['id' => $id, 'name' => $name, 'email' => $email]);
+        if('' === $age) $age = 30;
+
+        $stmt = $this->db->prepare("UPDATE users SET name = :name, email = :email, age = :age WHERE id = :id");
+        $stmt->execute(['id' => $id, 'name' => $name, 'email' => $email, 'age' => $age]);
 
     }
 }

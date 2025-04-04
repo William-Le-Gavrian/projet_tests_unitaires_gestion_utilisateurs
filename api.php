@@ -10,7 +10,7 @@ $userManager = new UserManager();
 
 try {
     if ($method === 'POST' && isset($_POST['name'], $_POST['email'])) {
-        $userManager->addUser($_POST['name'], $_POST['email']);
+        $userManager->addUser($_POST['name'], $_POST['email'], $_POST['age']);
         echo json_encode(["message" => "Utilisateur ajouté avec succès"]);
     } elseif ($method === 'GET') {
         echo json_encode($userManager->getUsers());
@@ -20,7 +20,7 @@ try {
     } elseif ($method === 'PUT') {
         parse_str(file_get_contents("php://input"), $_PUT);
         if (isset($_PUT['id'], $_PUT['name'], $_PUT['email'])) {
-            $userManager->updateUser($_PUT['id'], $_PUT['name'], $_PUT['email']);
+            $userManager->updateUser($_PUT['id'], $_PUT['name'], $_PUT['email'], $_PUT['age']);
             echo json_encode(["message" => "Utilisateur mis à jour"]);
         }
     } else {

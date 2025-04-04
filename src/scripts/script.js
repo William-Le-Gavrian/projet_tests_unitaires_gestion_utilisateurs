@@ -10,13 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 userList.innerHTML = "";
                 users.forEach(user => {
                     const li = document.createElement("li");
-                    const p = document.createElement("p");
+                    const userInfos = document.createElement("p");
+                    const userAge = document.createElement("p");
                     const div = document.createElement("div");
-                    p.innerHTML = `${user.name} (${user.email})`;
+                    userInfos.innerHTML = `${user.name} (${user.email})`;
+                    userAge.innerHTML = `${user.age} ans`;
                     div.innerHTML = `
-                        <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')">✏️</button>
+                        <button onclick="editUser(${user.id}, '${user.name}', '${user.email}', '${user.age}')">✏️</button>
                         <button onclick="deleteUser(${user.id})">❌</button>`;
-                    li.appendChild(p);
+                    li.appendChild(userInfos);
+                    li.appendChild(userAge);
                     li.appendChild(div);
                     userList.appendChild(li);
                 });
@@ -27,12 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
+        const age = document.getElementById("age").value;
         const userId = userIdField.value;
 
         if (userId) {
             fetch("api.php", {
                 method: "PUT",
-                body: new URLSearchParams({ id: userId, name, email }),
+                body: new URLSearchParams({ id: userId, name, email, age }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             }).then(() => {
                 fetchUsers();
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             fetch("api.php", {
                 method: "POST",
-                body: new URLSearchParams({ name, email }),
+                body: new URLSearchParams({ name, email, age }),
                 headers: { "Content-Type": "application/x-www-form-urlencoded" }
             }).then(() => {
                 fetchUsers();
@@ -51,9 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    window.editUser = function (id, name, email) {
+    window.editUser = function (id, name, email, age) {
         document.getElementById("name").value = name;
         document.getElementById("email").value = email;
+        document.getElementById("age").value = age;
         userIdField.value = id;
     };
 

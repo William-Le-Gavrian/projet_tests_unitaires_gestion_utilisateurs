@@ -1,0 +1,18 @@
+{
+  "name": "projet_tests_unitaires_gestion_utilisateurs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "k6:test": "k6 run tests-k6.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/William-Le-Gavrian/projet_tests_unitaires_gestion_utilisateurs.git"
+  },
+  "private": true,
+  "dependencies": {
+    "k6": "^0.0.0"
+  }
+}
